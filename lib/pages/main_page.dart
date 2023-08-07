@@ -25,7 +25,9 @@ class _MainPageState extends State<MainPage> {
         forceMaterialTransparency: true,
         leadingWidth: 65,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/info_page');
+          },
           splashRadius: 25,
           iconSize: 26,
           icon: const Icon(
@@ -35,7 +37,9 @@ class _MainPageState extends State<MainPage> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/settings_page');
+            },
             splashRadius: 25,
             iconSize: 26,
             icon: const Icon(
