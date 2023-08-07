@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:noise_meter_app/pages/home_page.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  late PageController controller;
+  int selectedItem = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = PageController(initialPage: selectedItem);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,77 +46,60 @@ class MainPage extends StatelessWidget {
           const SizedBox(width: 10),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 150,
-              color: Colors.blue,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                const Text(
-                  '43.1',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 80,
-                    color: Colors.black,
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  height: 50,
-                  color: Colors.grey[300],
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Min 35.1',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.green,
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      'Max 76.3',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+      body: PageView(
+        controller: controller,
+        onPageChanged: (int value) => setState(() => selectedItem = value),
+        children: <Widget>[
+          Container(color: Colors.red),
+          const HomePage(),
+          Container(color: Colors.yellow),
+          Container(color: Colors.green),
+        ],
       ),
       bottomNavigationBar: Row(
         children: <Widget>[
-          InkWell(
-            onTap: () {},
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: SizedBox(
-              height: 75,
-              width: MediaQuery.of(context).size.width / 4,
-              child: const Icon(
-                Icons.save,
-                size: 26,
-                color: Colors.grey,
+          Material(
+            color: selectedItem == 0 ? Colors.grey[300] : null,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(16),
+            ),
+            child: InkWell(
+              onTap: () {
+                setState(() => selectedItem = 0);
+                controller.animateToPage(
+                  selectedItem,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.linear,
+                );
+              },
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(16),
+              ),
+              child: SizedBox(
+                height: 75,
+                width: MediaQuery.of(context).size.width / 4,
+                child: const Icon(
+                  Icons.save_outlined,
+                  size: 26,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
           Material(
-            color: Colors.grey[300],
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+            color: selectedItem == 1 ? Colors.grey[300] : null,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(16),
+            ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                setState(() => selectedItem = 1);
+                controller.animateToPage(
+                  selectedItem,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.linear,
+                );
+              },
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(16)),
               child: SizedBox(
@@ -115,29 +113,59 @@ class MainPage extends StatelessWidget {
               ),
             ),
           ),
-          InkWell(
-            onTap: () {},
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: SizedBox(
-              height: 75,
-              width: MediaQuery.of(context).size.width / 4,
-              child: const Icon(
-                Icons.list,
-                size: 26,
-                color: Colors.grey,
+          Material(
+            color: selectedItem == 2 ? Colors.grey[300] : null,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(16),
+            ),
+            child: InkWell(
+              onTap: () {
+                setState(() => selectedItem = 2);
+                controller.animateToPage(
+                  selectedItem,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.linear,
+                );
+              },
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(16),
+              ),
+              child: SizedBox(
+                height: 75,
+                width: MediaQuery.of(context).size.width / 4,
+                child: const Icon(
+                  Icons.list,
+                  size: 26,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
-          InkWell(
-            onTap: () {},
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: SizedBox(
-              height: 75,
-              width: MediaQuery.of(context).size.width / 4,
-              child: const Icon(
-                Icons.timer,
-                size: 26,
-                color: Colors.grey,
+          Material(
+            color: selectedItem == 3 ? Colors.grey[300] : null,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(16),
+            ),
+            child: InkWell(
+              onTap: () {
+                setState(() => selectedItem = 3);
+                controller.animateToPage(
+                  selectedItem,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.linear,
+                );
+              },
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(16),
+              ),
+              child: SizedBox(
+                height: 75,
+                width: MediaQuery.of(context).size.width / 4,
+                child: const Icon(
+                  Icons.timer_outlined,
+                  size: 26,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
