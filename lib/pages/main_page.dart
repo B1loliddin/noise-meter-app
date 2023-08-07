@@ -41,10 +41,43 @@ class MainPage extends StatelessWidget {
               height: 150,
               color: Colors.blue,
             ),
-            Container(
-              width: 375,
-              height: 50,
-              color: Colors.black54,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                const Text(
+                  '43.1',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 80,
+                    color: Colors.black,
+                  ),
+                ),
+                Container(
+                  width: 1,
+                  height: 50,
+                  color: Colors.grey[300],
+                ),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Min 35.1',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      'Max 76.3',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
@@ -53,6 +86,7 @@ class MainPage extends StatelessWidget {
         children: <Widget>[
           InkWell(
             onTap: () {},
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: SizedBox(
               height: 75,
               width: MediaQuery.of(context).size.width / 4,
@@ -83,6 +117,7 @@ class MainPage extends StatelessWidget {
           ),
           InkWell(
             onTap: () {},
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: SizedBox(
               height: 75,
               width: MediaQuery.of(context).size.width / 4,
@@ -95,6 +130,7 @@ class MainPage extends StatelessWidget {
           ),
           InkWell(
             onTap: () {},
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: SizedBox(
               height: 75,
               width: MediaQuery.of(context).size.width / 4,
